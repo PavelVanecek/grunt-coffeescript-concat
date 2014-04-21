@@ -1,0 +1,15 @@
+class C
+  constructor: ->
+    @propertyC = "C"
+
+
+class B extends C
+  constructor: ->
+    @propertyB = "B"
+
+
+class A extends B
+  constructor: ->
+    @propertyA = "A"
+
+

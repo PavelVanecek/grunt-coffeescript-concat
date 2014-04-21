@@ -1,4 +1,4 @@
-# grunt-coffeescript-concat
+# grunt-coffeescript-concat [![Build Status](https://travis-ci.org/PavelVanecek/grunt-coffeescript-concat.svg?branch=master)](https://travis-ci.org/PavelVanecek/grunt-coffeescript-concat)
 
 > Grunt plugin for [coffeescript-concat by fairfieldt](https://github.com/fairfieldt/coffeescript-concat)
 

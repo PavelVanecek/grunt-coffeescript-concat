@@ -21,7 +21,7 @@ module.exports = function(grunt) {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       recursive: true,
-      output: "concatenated.coffee"
+      includeFolders: []
     });
 
     var done = this.async();
@@ -39,7 +39,12 @@ module.exports = function(grunt) {
         }
       });
 
-      exec('node ' + coffeescript_concatPath + ' ' + files.join(" "), function (error, stdout, stderr) {
+      var include = '';
+      if (options.includeFolders && options.includeFolders.length) {
+        include = ' -I ' + options.includeFolders.join(' ');
+      }
+
+      exec('node ' + coffeescript_concatPath + ' ' + include + ' ' + files.join(" "), function (error, stdout, stderr) {
           if (error) {
             console.error(error);
             return done(error);

@@ -31,10 +31,9 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     coffeescript_concat: {
       plain_files: {
-        options: {
-        },
+        options: {},
         files: {
-          './tmp/plain_files': [
+          'tmp/plain_files': [
             'test/fixtures/files/a.coffee',
             'test/fixtures/files/b.coffee',
             'test/fixtures/files/c.coffee'
@@ -43,10 +42,22 @@ module.exports = function(grunt) {
       },
       classes: {
         files: {
-          './tmp/classes': [
+          'tmp/classes': [
             'test/fixtures/classes/classA.coffee',
             'test/fixtures/classes/classB.coffee',
             'test/fixtures/classes/classC.coffee'
+          ]
+        }
+      },
+      include: {
+        options:  {
+          includeFolders: [
+            'test/fixtures/include/folderA'
+          ],
+        },
+        files: {
+          'tmp/include': [
+            'test/fixtures/include/folderB/beta.coffee'
           ]
         }
       }

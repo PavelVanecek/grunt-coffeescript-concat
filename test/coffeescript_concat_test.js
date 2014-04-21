@@ -37,4 +37,11 @@ exports.coffeescript_concat = {
     test.equal(actual, expected, 'should correctly concatenate classes');
     test.done();
   },
+  include: function(test) {
+
+    var actual = grunt.file.read('./tmp/include');
+    var expected = grunt.file.read('test/expected/include');
+    test.equal(actual, expected, 'should correctly concatenate included folders');
+    test.done();
+  }
 };

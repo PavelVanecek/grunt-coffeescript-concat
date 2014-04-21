@@ -32,12 +32,24 @@ grunt.initConfig({
 });
 ```
 
+### Options
+
+#### includeFolders
+Type: `Array.<string>`
+
+Will be passed as `-I [files]` option to coffeescript-concat.
+
 ### Usage Examples
 
 ```js
 grunt.initConfig({
   coffeescript_concat: {
     compile: {
+      options: {
+        includeFolders: [
+          'coffee/myotherfiles'
+        ]
+      },
       files: {
         'build/concatenated.coffee': [
           'coffee/a.coffee',

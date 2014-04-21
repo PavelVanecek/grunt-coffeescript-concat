@@ -8,8 +8,9 @@
 
 'use strict';
 
-// TODO: rewrite the coffeescript_concat so it is launchable directly, without executing
+// TODO: rewrite the coffeescript-concat so it is launchable directly, without executing
 var exec = require('child_process').exec;
+var coffeescript_concatPath = require.resolve('coffeescript-concat');
 
 module.exports = function(grunt) {
 
@@ -38,7 +39,7 @@ module.exports = function(grunt) {
         }
       });
 
-      exec('coffee ./node_modules/coffeescript-concat/coffeescript-concat.coffee ' + files.join(" "), function (error, stdout, stderr) {
+      exec('node ' + coffeescript_concatPath + ' ' + files.join(" "), function (error, stdout, stderr) {
           if (error) {
             console.error(error);
             return done(error);

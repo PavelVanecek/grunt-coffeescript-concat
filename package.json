@@ -39,6 +39,7 @@
     "gruntplugin"
   ],
   "dependencies": {
-    "coffeescript-concat": "^1.0.6"
+    "coffeescript-concat": "^1.0.6",
+    "q": "^1.1.1"
   }
 }

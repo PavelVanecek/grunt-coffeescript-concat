@@ -9,8 +9,9 @@
 'use strict';
 
 // TODO: rewrite the coffeescript-concat so it is launchable directly, without executing
-var exec = require('child_process').exec;
-var coffeescript_concatPath = require.resolve('coffeescript-concat');
+var exec = require('child_process').exec,
+    coffeescript_concatPath = require.resolve('coffeescript-concat'),
+    Q = require('q');
 
 module.exports = function(grunt) {
 
@@ -24,7 +25,8 @@ module.exports = function(grunt) {
       includeFolders: []
     });
 
-    var done = this.async();
+    var allTasksDone = this.async(),
+        deferreds = [];
 
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
@@ -45,16 +47,22 @@ module.exports = function(grunt) {
       }
 
       exec('node ' + coffeescript_concatPath + ' ' + include + ' ' + files.join(" "), function (error, stdout, stderr) {
+          var deferred = Q.defer();
+          deferreds.push(deferred);
           if (error) {
             console.error(error);
-            return done(error);
+            return deferred.reject(error);
           }
           // coffeescript-concat library itself can write to file too via -o command, but grunt can create directories as well, preventing ENOENT errors
           grunt.file.write(f.dest, stdout);
           // Print a success message.
           grunt.log.writeln('File "' + f.dest + '" created.');
-          done();
+          deferred.resolve();
       });
+    });
+
+    Q.all(deferreds.map(function(d) { return d.promise; })).fin(function() {
+      allTasksDone();
     });
   });
 

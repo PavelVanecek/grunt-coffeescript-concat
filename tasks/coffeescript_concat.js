@@ -46,11 +46,11 @@ module.exports = function(grunt) {
         include = ' -I ' + options.includeFolders.join(' ');
       }
 
-      exec('node ' + coffeescript_concatPath + ' ' + include + ' ' + files.join(" "), function (error, stdout, stderr) {
           var deferred = Q.defer();
           deferreds.push(deferred);
+      exec('node ' + coffeescript_concatPath + ' ' + include + ' ' + files.join(" "), function (error, stdout) {
           if (error) {
-            console.error(error);
+            grunt.log.error(error);
             return deferred.reject(error);
           }
           // coffeescript-concat library itself can write to file too via -o command, but grunt can create directories as well, preventing ENOENT errors

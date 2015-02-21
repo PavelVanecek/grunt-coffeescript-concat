@@ -46,9 +46,14 @@ module.exports = function(grunt) {
         include = ' -I ' + options.includeFolders.join(' ');
       }
 
+      var optionMaxBuffer = 200 * 1024;
+      if (options.maxBuffer && typeof options.maxBuffer === 'number') {
+        optionMaxBuffer = options.maxBuffer;
+      }
+
           var deferred = Q.defer();
           deferreds.push(deferred);
-      exec('node ' + coffeescript_concatPath + ' ' + include + ' ' + files.join(" "), function (error, stdout) {
+      exec('node ' + coffeescript_concatPath + ' ' + include + ' ' + files.join(" "), {maxBuffer: optionMaxBuffer}, function (error, stdout) {
           if (error) {
             grunt.log.error(error);
             return deferred.reject(error);

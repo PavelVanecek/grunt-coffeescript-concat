@@ -1,7 +1,7 @@
 {
   "name": "grunt-coffeescript-concat",
   "description": "Grunt plugin for coffeescript-concat module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/PavelVanecek/grunt-coffeescript-concat",
   "author": {
     "name": "Pavel Vanecek",
@@ -27,10 +27,10 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "^0.9.2",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-nodeunit": "^0.3.3",
-    "grunt": "~0.4.4"
+    "grunt": "~0.4.4",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-nodeunit": "^0.4.1"
   },
   "peerDependencies": {
     "grunt": ">=0.4.0"
